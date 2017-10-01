@@ -1,0 +1,179 @@
+
+SQL*Plus: Release 11.2.0.1.0 Production on Fri Sep 22 22:17:59 2017
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: sys as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - 64bit Production
+
+SQL> Create table Students(Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25));
+Create table Students(Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25))
+                                                                                                                                                         *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> Create table Students(Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25));
+Create table Students(Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25))
+                                                                                                                                                         *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> Create table Students(Student_tag int(10) primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25));
+Create table Students(Student_tag int(10) primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int(10), Email varchar2(25))
+                                     *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Students( Student_tag int primary key, First_name varchar2(15));
+
+Table created.
+
+SQL> drop table Students;
+
+Table dropped.
+
+SQL> create table Students( Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date);
+
+Table created.
+
+SQL> drop table Students;
+
+Table dropped.
+
+SQL> create table Students( Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int, Email varchar2(25));
+
+Table created.
+
+SQL> desc Students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_TAG                               NOT NULL NUMBER(38)
+ FIRST_NAME                                         VARCHAR2(15)
+ LAST_NAME                                          VARCHAR2(15)
+ BIRTH_DATE                                         DATE
+ ADDRESS                                            VARCHAR2(20)
+ MOBILE_NUM                                         NUMBER(38)
+ EMAIL                                              VARCHAR2(25)
+
+SQL> create table Books( Book_tag int primary key, Title varchar2(15), Author varchar2(15), Location varchar2(15), Publisher varchar2(15), BookDescription varchar2(20), Language varchar2(25));
+
+Table created.
+
+SQL> create table Lending( Student_tag int primary key, Book_tag int forgien kay);
+create table Lending( Student_tag int primary key, Book_tag int forgien kay)
+                                                                *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Lending( Student_tag int primary key, Book_tag int foreign kay);
+create table Lending( Student_tag int primary key, Book_tag int foreign kay)
+                                                                *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Lending(Lending_id int primary key, Book_tag int foreign kay);
+create table Lending(Lending_id int primary key, Book_tag int foreign kay)
+                                                              *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Lending(Lending_id int primary key, Book_tag foreign kay);
+create table Lending(Lending_id int primary key, Book_tag foreign kay)
+                                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Lending(Lending_id int primary key, Book_tag foreign kay);
+create table Lending(Lending_id int primary key, Book_tag foreign kay)
+                                                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Lending( Lending_id int primary key, Book_tag foreign kay)
+  2  ;
+create table Lending( Lending_id int primary key, Book_tag foreign kay)
+                                                                   *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table Students( Student_tag int primary key, First_name varchar2(15), Last_name varchar2(15), Birth_date date, Address varchar2(20), Mobile_num int, Email varchar2(25))
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+QL*Plus: Release 11.2.0.1.0 Production on Sun Sep 24 23:32:57 2017
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+Enter user-name: sys as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 11g Release 11.2.0.1.0 - 64bit Production
+
+SQL> desc Students;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_TAG                               NOT NULL NUMBER(38)
+ FIRST_NAME                                         VARCHAR2(15)
+ LAST_NAME                                          VARCHAR2(15)
+ BIRTH_DATE                                         DATE
+ ADDRESS                                            VARCHAR2(20)
+ MOBILE_NUM                                         NUMBER(38)
+ EMAIL                                              VARCHAR2(25)
+
+SQL> desc Books;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BOOK_TAG                                  NOT NULL NUMBER(38)
+ TITLE                                              VARCHAR2(15)
+ AUTHOR                                             VARCHAR2(15)
+ LOCATION                                           VARCHAR2(15)
+ PUBLISHER                                          VARCHAR2(15)
+ BOOKDESCRIPTION                                    VARCHAR2(20)
+ LANGUAGE                                           VARCHAR2(25)
+
+SQL> create table Users(Username varchar2(10) primary key, password varchar2(15), First_name varchar2(15), Last_name varchar2(15), User_type varchar2(15));
+
+Table created.
+
+SQL> create table Lending(Lending_id int primary key, Start_date date, End_date date, Book_tag int, foreign key(Book_tag) references Books(Book_tag), Title varchar2(15), foreign key(Title) references Books(Title), Student_tag int, foreign key(Student_tag) references Students(Student_tag), First_name varchar2(15), foreign key(First_name) references Students(First_name), Last_name varchar2(15), foreign key(Last_name) references Students(Last_name));
+create table Lending(Lending_id int primary key, Start_date date, End_date date, Book_tag int, foreign key(Book_tag) references Books(Book_tag), Title varchar2(15), foreign key(Title) references Books(Title), Student_tag int, foreign key(Student_tag) references Students(Student_tag), First_name varchar2(15), foreign key(First_name) references Students(First_name), Last_name varchar2(15), foreign key(Last_name) references Students(Last_name))
+                                                                                                                                                                                                         *
+ERROR at line 1:
+ORA-02270: no matching unique or primary key for this column-list
+
+
+SQL> create table Lending(Lending_id int primary key, Start_date date, End_date date, Book_tag int, foreign key(Book_tag) references Books(Book_tag), Student_tag int, foreign key(Student_tag) references Students(Student_tag));
+
+Table created.
+
+SQL> desc Lending;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LENDING_ID                                NOT NULL NUMBER(38)
+ START_DATE                                         DATE
+ END_DATE                                           DATE
+ BOOK_TAG                                           NUMBER(38)
+ STUDENT_TAG                                        NUMBER(38)
+
+SQL> desc Users;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERNAME                                  NOT NULL VARCHAR2(10)
+ PASSWORD                                           VARCHAR2(15)
+ FIRST_NAME                                         VARCHAR2(15)
+ LAST_NAME                                          VARCHAR2(15)
+ USER_TYPE                                          VARCHAR2(15)
